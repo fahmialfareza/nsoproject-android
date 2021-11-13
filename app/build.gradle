@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
     defaultConfig {
         applicationId "com.karyastudio.nsoproject"
         minSdkVersion 16
-        targetSdkVersion 29
-        versionCode 27022020
-        versionName "2020.02.27"
+        targetSdkVersion 30
+        versionCode 13112021
+        versionName "2021.11.13"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

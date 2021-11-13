@@ -110,8 +110,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if (url != null && url.startsWith("whatsapp://")) {
+            if (url != null && (url.startsWith("whatsapp://")) || (url.contains("api.whatsapp.com"))) {
                     view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                    return true;
+                } else if (url.contains("gojek://")) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    startActivity(intent);
+
                     return true;
                 } else if (url != null && url.startsWith("tel:")) {
                     Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(url));
@@ -141,6 +147,22 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                     return super.shouldOverrideUrlLoading(view, url);
+                } else if (url.contains("https://app.midtrans.com/snap/v1/transactions/") && url.contains("/pdf")) {
+                    webView.setDownloadListener(new DownloadListener() {
+                        @Override
+                        public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
+                            android.net.Uri uri = android.net.Uri.parse(url);
+                            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                            startActivity(intent);
+                        }
+                    });
+                    return super.shouldOverrideUrlLoading(view, url);
+                } else if (!url.contains("nsoproject.com") && (!url.contains("accounts.google.com"))) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    startActivity(intent);
+
+                    return true;
                 } else {
                     view.loadUrl(url);
                     return super.shouldOverrideUrlLoading(view, url);

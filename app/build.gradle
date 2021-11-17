@@ -4,7 +4,7 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
     defaultConfig {
-        applicationId "com.karyastudio.nsoproject"
+        applicationId "com.karyastudioteknologidigital.nsoproject"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 13112021
